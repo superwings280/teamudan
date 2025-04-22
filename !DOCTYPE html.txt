@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Imran - Poppo Host Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fbe9f3, #d6f6ff);
+      color: #333;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d81b60;
+      border-radius: 6px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(120deg, #ffd6e8, #c8e6f9);
+      position: relative;
+      animation: fadeSlide 1s ease;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header-content {
+      position: relative;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      color: #ff4081;
+      animation: pulse 2s infinite;
+      background: linear-gradient(to right, #ff4081, #f50057, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .slogan {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .cta-button {
+      margin-top: 20px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #f48fb1, #ce93d8);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 12px #f48fb1;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(to right, #ce93d8, #f48fb1);
+      transform: scale(1.05);
+    }
+
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 125%;
+    }
+
+    .button-container {
+      max-width: 480px;
+      margin: 30px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-container button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      background: #fff;
+      color: #5e5e5e;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .button-container button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #f48fb1, #ce93d8, #ba68c8, #f48fb1);
+      background-size: 300% 300%;
+      border-radius: 50px;
+      z-index: -1;
+      animation: glow-border 3s ease infinite;
+    }
+
+    @keyframes glow-border {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .button-container button:hover {
+      background: #fce4ec;
+      color: #d81b60;
+      transform: scale(1.02);
+    }
+
+    .faq-container {
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-container h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #6a1b9a;
+    }
+
+    .collapsible {
+      background-color: #f3e5f5;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 15px;
+      color: #4a148c;
+    }
+
+    .collapsible:hover {
+      background-color: #e1bee7;
+    }
+
+    .content {
+      display: none;
+      padding: 10px 14px;
+      background: #f8bbd0;
+      border-radius: 6px;
+      margin-top: 6px;
+      font-size: 14px;
+      color: #4e4e4e;
+    }
+
+    footer {
+      font-size: 12px;
+      text-align: center;
+      margin: 30px auto 10px;
+      color: #888;
+    }
+
+    select, input, button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    button[type="submit"] {
+      background-color: #ba68c8;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #ab47bc;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">TEAM UDAN 🕊️</div>
+      <div class="slogan">Make livestream your passion</div>
+      <button class="cta-button" onclick="window.location.href='https://teamudan.xyz';">Join Team Udaan</button>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button onclick="window.open('https://sites.google.com/view/reward-280/home', '_blank')">Host Guidance</button>
+    <button onclick="window.open('https://sites.google.com/view/live-booster/home', '_blank')">Check Tomorrow's Task</button>
+    <button onclick="window.open('https://static.pp-static.com/uploads/6f2bff4b307200f30bf9902bb7cc2d261742916948.apk', '_blank')">Download Poppo Live</button>
+    <button onclick="window.open('https://mimi.onelink.me/I9oO/5yyctayg', '_blank')">Download Mimi Live</button>
+    <button onclick="window.open('https://sites.google.com/view/creators-apply/home', '_blank')">Check Monthly Earning</button>
+    <button onclick="window.open('https://sites.google.com/view/teamudanrefill/home', '_blank')">COIN REFILLING</button>
+  </div>
+   <body> <div style="max-width: 480px; margin: 40px auto; padding: 20px; border-radius: 12px; background-color: #fff3f8; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); text-align: center;">
+    <h2 style="color: #d81b60; font-size: 22px;">Follow Us on Instagram</h2>
+    <div style="margin: 16px 0;">
+      <iframe 
+        src="https://www.instagram.com/superwings280/embed" 
+        width="100%" 
+        height="450" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true" 
+        style="border-radius: 12px;">
+      </iframe>
+    </div>
+    <a href="https://www.instagram.com/superwings280" target="_blank" style="display: inline-block; padding: 10px 20px; background: linear-gradient(to right, #f48fb1, #ce93d8); color: white; border-radius: 25px; text-decoration: none; font-weight: bold;">Visit Profile</a>
+  </div>
+  <div class="faq-container">
+    <h1>Team Udaan FAQs</h1>
+
+    <button class="collapsible" onclick="toggleContent(this)">Live Streaming Guidance</button>
+    <div class="content">We guide hosts to use the app effectively, including rules and streaming practices.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">Salary Earning Potential</button>
+    <div class="content">Earn ₹800–₹8000 daily through Poppo & Mimi Live. Instant withdrawal supported.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">High-Quality Support</button>
+    <div class="content">Team Udaan provides fast support for account issues and safety concerns.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">Performance Rewards</button>
+    <div class="content">Earn monthly bonuses and leaderboard positions as a top performer.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">Training & Growth</button>
+    <div class="content">We provide regular workshops and 1-on-1 sessions to help you grow.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">Blending Tradition & Tech</button>
+    <div class="content">A mix of Indian values and modern tools for creators to rise with dignity.</div>
+
+    <button class="collapsible" onclick="toggleContent(this)">How do I join Team Udaan?</button>
+    <div class="content">
+      <select id="roleSelection" onchange="roleChanged()">
+        <option value="">Select Role</option>
+        <option value="host">Host</option>
+        <option value="agent">Agent</option>
+      </select>
+      <input type="text" id="userId" placeholder="Enter Poppo/Mimi ID" style="display: none;">
+      <button type="submit" id="submitButton" style="display: none;" onclick="submitForm()">Submit</button>
+    </div>
+
+    <button class="collapsible" onclick="toggleContent(this)">Why choose Team Udaan?</button>
+    <div class="content">We offer personalized mentorship, faster payouts, verified data, and trusted community.</div>
+  
+  </div>
+
+  <footer>© 2025 Team Udaan. All Rights Reserved.</footer>
+
+  <script>
+    function toggleContent(el) {
+      const content = el.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function roleChanged() {
+      const role = document.getElementById('roleSelection').value;
+      const input = document.getElementById('userId');
+      const button = document.getElementById('submitButton');
+
+      if (role === 'host') {
+        input.style.display = 'block';
+        button.style.display = 'block';
+      } else if (role === 'agent') {
+        input.style.display = 'none';
+        button.style.display = 'block';
+      } else {
+        input.style.display = 'none';
+        button.style.display = 'none';
+      }
+    }
+
+    function submitForm() {
+      const role = document.getElementById('roleSelection').value;
+      const userId = document.getElementById('userId').value;
+
+      if (role === 'host' && userId) {
+        const msg = `I want to join Poppo or Mimi and my ID is ${userId}`;
+        window.open(`https://wa.me/19295909344?text=${encodeURIComponent(msg)}`, '_blank');
+      } else if (role === 'agent') {
+        window.open('https://www.poppoagency.xyz', '_blank');
+      } else {
+        alert("Please select a role and provide details.");
+      }
+    }
+  </script>
+</body>
+</html>
